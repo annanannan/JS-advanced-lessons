@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var objA = {"objName":"AAA"};
+        // var objB = {"objName":"BBB"};
+        // objA.foo = function(){
+        //     console.log(this.objName);
+        // }
+        // objA.foo();
+        // //方法。call();
+        // objA.foo.call(objB);
+        // for(var i = 0;i<3;i++){
+        //     setTimeout(function(){
+        //         console.log(new Date(),i);
+        //     },1000*i)
+        //}
+        // for(var i = 0;i<3;i++){
+        //     setTimeout(function(){
+        //         console.log(new Date(),i);
+        //     },1000*0)
+        // }
+        // for(var i = 0;i<3;i++){
+        //     setTimeout(function(){
+        //         console.log(new Date(),i);
+        //     },1000*1)
+        // }
+        // for(var i = 0;i<3;i++){
+        //     (function(j){
+        //     setTimeout(function(){
+        //         console.log(new Date(),j);
+        //     },1000*i)
+        // })(i)
+        // }
+
+
+        // function foo(){
+        //     var i = 0;
+        //     function bar(){
+        //         console.log(++i);
+        //     }
+        //     return bar;
+        // }
+        // var a = foo();
+        // var b = foo();
+        // a();
+        // a();
+        // b();
+
+        //Object.create(obj)
+        //创建一个新对象，并且将新对象
+        var obj = {
+            num : 10,
+            str : "hello",
+            show : function(){
+                console.log(this.str)
+            }
+        }
+        var subObject = Object.create(obj);
+        console.log(subObject.__proto__ == obj);
+        console.log(subObject.num);
+
+    </script>
+</body>
+</html>
