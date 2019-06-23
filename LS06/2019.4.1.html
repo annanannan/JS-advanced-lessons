@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #container{
+        border: 1px solid #aaa;
+        padding: 10px;
+        margin: 10px;
+        height: 180px;
+        width: 180px;
+
+    }
+   </style>
+</head>
+<body>
+    <h3>上传头像</h3>
+    <div id="container"></div>   
+</body>
+<script>
+    document.ondragover = function(e){
+        e.preventDefault();
+    }
+    document.ondrop = function(e){
+        e.preventDefault();
+    }
+    container.ondragover = function(e){
+        e.preventDefault();
+    }
+    container.ondrop = function(e){
+        console.log("用户拖着一张图片释放了。。。");
+        console.log(e.dataTransfer.files[0]);
+        var f0 = e.dataTransfer.files[0];
+        var fr = new FileReader();
+        fr.readAsDataURL(f0);
+        fr.onload = function(){
+            var img  = new Image();
+            img.src = fr.result;
+            container.appendChild(img);
+        }
+    }
+</script>
+</html>

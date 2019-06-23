@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas</title>
+    <style>
+        canvas{
+            border: 1px solid red;
+            background: yellow;          
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas1" width="800" height="800">
+        你的浏览器不支持canvas
+    </canvas>
+</body>
+<script>
+    var canvas = document.getElementById("canvas1");
+    var context = canvas.getContext('2d');
+    context.beginPath();
+    context.moveTo(100,100);
+    context.lineTo(100,500);
+    context.lineTo(400,500);
+    context.lineTo(100,100);
+
+    context.lineWidth = 5;
+    context.strokeStyle = "blue";
+    context.fillStyle="red";
+    context.closePath();
+    context.stroke();
+    context.fill();
+
+    context.beginPath();
+    context.moveTo(200,100);
+    context.lineTo(500,500);
+    context.strokeStyle = "red";
+    context.closePath();
+    context.stroke();
+
+    var c1 = document.getElementById("canvas1");
+    var context1 = c1.getContext("2d");
+    context.beginPath();
+    context1.lineWidth=5;
+    context1.strokeStyle = "#005588";
+    context1.arc(300,300,200,0,1.5*Math.PI);
+    context1.stroke();
+    context.closePath();
+    
+
+    
+
+    
+    
+
+</script>
+</html>
