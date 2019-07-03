@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* div{
+            background:red;
+            width:100px;
+        }
+        #container{
+            width:1000px;
+            border: 2px solid red;
+            margin: 0 auto;
+        }
+        #btnlist{
+            width:1000px;
+            margin: 0 auto;
+        }
+        img{
+            width:150px;
+        } */
+        div{
+            height:400px;
+            width:400px;
+            background:red;
+        }
+    </style>
+</head>
+<body>
+        <!-- <table width="400" height="400" border="1" align="center">
+                <tr class="odd">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+        </table>
+
+        <img src="zhanqiao.jpg" alt="" id="img1">
+        <img src="zhanqiao.jpg">
+        <img src="zhanqiao.jpg">
+
+        <div>层1</div>
+        <div>层2</div>
+        <div>层3</div>
+
+        <table>
+            <tr>
+            <td>用户名：</td>
+                <td>
+                    <input type="text" name="username" id="username">
+                </td>
+            </tr>
+            <td>密码：</td>
+                <td>
+                    <input type="password" name="pwd" id="upwd">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" value="登陆">
+                </td>
+            </tr>
+        </table>
+
+        <div id="container">
+            <img src="zhanqiao.jpg" alt="" id="img1">
+        </div>
+        <div id="btnlist">
+            <button id="after">after</button>
+        </div> -->
+
+        <!-- <table>
+            <tr>
+            <td>用户名：</td>
+                <td>
+                    <input type="text" name="username" id="username">
+                    <span class="error"></span>
+                </td>
+            </tr>
+            <td>密码：</td>
+                <td>
+                    <input type="password" name="pwd" id="upwd">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" value="登陆">
+                </td>
+            </tr>
+        </table>
+
+        <div id="attrbtn">
+            <img src="zhanqiao.jpg" alt="" id="img1">
+        </div> -->
+
+        <div></div>
+        <button id="slideUp">slideUp</button>
+        <button id="slideDown">slideDown</button>
+        <button id="fadeIn">fadeIn</button>
+        <button id="fadeOut">fadeOut</button>
+        <button id="animate">animate</button>
+</body>
+<script src = "jquery-3.4.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+<script>
+    /*
+        最流行的第三方库jQuery
+        * 表示所有元素   #id  .class  slement  .class.class  
+    */
+    //过滤选择器
+    $("td:first").css("background","red");
+    $("td:last").css("background","green");
+    $("td:even").css("background","blue");//索引为偶数
+    $("td:odd").css("background","blue");//索引为奇数
+    $("td:eq(0)").css("background","yellow");//equal相等 特定索引值，即选中索引为0的
+    var index = 5;
+    $("td:eq("+ index +")").css("background","yellow");
+    $("td:gt(1)").css("background","pink");//索引值大于该特定元素，即索引大于1的
+    $("td:lt(3)").css("background","black");//索引值小于该特定元素
+    $("td:not(#td1)").css("background","orange");//排除特定元素
+    
+    //事件方法
+    //jQuery和js尽量不要混着写
+    $("#img1").mouseover(function(){
+        $(this).css("border","5px solid red");
+    })
+    $("img").mouseover(function(){
+        $(this).css("border","5px solid red");
+    })
+
+    /*
+        鼠标移上时，背景色变为蓝色
+        移开时，变为灰色
+        点击时变为红色
+    */
+    /*合着写*/
+    // $("div").mouseover(function(){
+    //     $(this).css("background","blue");
+    // }).mouseout(function(){
+    //     $(this).css("background","gray");
+    // }).click(function(){
+    //     $(this).css("background","red");
+    // })
+    //分开写
+    // $("div").mouseout(function(){
+    //     $(this).css("background","gray");
+    // })
+    // $("div").click(function(){
+    //     $(this).css("background","red");
+    // })
+
+    /*
+        生成一个jquery包装集$(html标记)  $(js对象)
+        获取表单元素的value值,$(元素).val()
+        $(选择器).append(jquery包装集) 向前面选中元素内部最后位置添加新节点
+        $(选择器).remove() 将选中的元素移除掉
+    */
+    $("#username").blur(function(){
+        var $error = $("<span class='error'>用户名不能为空<span/>");
+        var inputVal = $(this).val();
+        if(inputVal == ""){
+            $(this).parent().append($error);
+        }
+        else{
+            $(".error").remove();
+        }
+    })
+    $("#pwd").blur(function(){
+        var $error = $("<span class='error'>密码不能为空<span/>");//生成一个新的节点然后添加进去
+        var inputVal = $(this).val();
+        if(inputVal == ""){
+            $(this).parent().append($error);
+        }
+        else{
+            $(".error").remove();
+        }
+    })
+
+    $("#after").click(function(){
+        var $img2 = $("<img src='zhanqiao.jpg'/>");
+        $("#img1").after($img2);
+    })
+
+    //表示页面加载完成
+    //window.onload是所有元素加载完，慢，并且写多个时最后一个会将前面的覆盖掉
+    //下面这种方法就是页面解析完，不会覆盖
+    $(document).ready(function(){
+    })
+
+    //相关属性操作
+    //不再动态添加节点
+    $("#username").blur(function(){
+        var inputVal = $(this).val();
+        if(inputVal == ""){
+            $(".error").html("用户名不能为空");
+            $(".error").css({
+                "color":"red",
+                "font-size":"30px"
+            })
+        }
+    })
+    /*
+        val()用于获取活在这设置表单元素的value值
+        html() 用于获取或者设置选中元素标签内部的html内容
+        css() 用于设置元素的样式，参数可以是对象或两个参数
+    */
+    $("#attrbtn").click(function(){
+        $("#img1").attr("src","zhanqiao.jpg");
+        alert($("#img1").attr("src"));
+    })
+    $("btn").click(function(){
+        $("#img1").attr("title","这是一张图片");//添加属性
+    })
+    $("btn1").click(function(){
+        $("#img1").removeAttr("title");//移出属性
+    })
+    /*
+        attr("属性名","属性名");设置特定元素的属性
+        attr("属性名");获取特定属性的属性值
+        removeAttr("属性名");移出特定属性
+
+        addClass("class的名称") 表示向选中元素添加新的class
+    */
+    $("#img1").mouseover(function(){
+        $(this).addClass("imgborder");
+    })
+    $("#img1").mouseout(function(){
+        $(this).removeClass("imgborder");
+    })
+
+    /*
+        1、结构：引入jquery库，得到jquery包装集，选择器$("#btn")
+        2、过滤选择器$("td:even")偶数、$("td:odd")奇数、$("td:eq(index)")索引值为index、$("td:lt")$("td:gt")$("td:not")
+        3、事件  选中元素.事件方法 在方法里面写函数
+            mouseover() mouseout() mousemove() click() blur() focus() ready()
+        4、DOM操作
+            生成节点:$("html结构")
+            插入节点append() appendTo()  insertBefore() after() insertAfter() prepend() prependTo()
+            设置、获取内容html() val() attr() remoceAttr() addClass() removeClass() css()
+    */
+
+    //动画
+    $("#slideUp").click(function(){
+        $("div").slideUp(1500);//向上滑没
+    })
+    $("#slideDown").click(function(){
+        $("div").slideDown(1500);
+    })
+    //slideUp() slideDown() 通过改变元素的高度来切换显示与隐藏
+    $("#fadeIn").click(function(){
+        $("div").fadeIn(1500);
+    })
+    $("#fadeOut").click(function(){
+        $("div").fadeOut(1500);
+    })
+    //fadeIn() fadeOut() 通过改变元素的透明度来切换显示与隐藏
+    $("#animate").click(function(){
+        // $("div").animate({//表现出来的是一种对象的结构
+        //     "margin-left":"400px",
+        //     "margin-top":"200px",
+        // },3000);
+        $("div").animate({
+            "margin-left":"400px",
+        },3000).animate({
+            "margin-top":"200px",
+        })
+    })
+    /*
+        动画执行顺序，同步执行、顺序执行
+    */
+</script>
+</html>

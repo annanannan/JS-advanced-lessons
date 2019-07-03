@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        Math.random();
+        得到的是一个[0,1)之间的任意浮点数
+    */
+    for(var i=0;i<5;i++){
+        console.log(Math.random());
+    }
+    //得到一个范围内的随机值
+    function getMiddle(min,max){
+        return Math.random()*(max-min)+min;
+    }
+    getMiddle(1,10);
+    //得到一个整数
+    function getMiddle(min,max){
+        return Math.floor(Math.random()*(max-min)+min);//向下取整
+    }
+    getMiddle(1,10);
+  
+</script>
+</html>

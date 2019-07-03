@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	//立即执行函数表达式，解决变量的非期望共享
+	function fn1(){
+		var arr1 = [];
+		for(var i = 0;i < 10;i++)
+		{
+			arr1[i] = function(){
+				return i;//函数里面的i不确定是多少，得到的i都是10
+			}
+		}
+		return arr1;
+	}
+	var result = fn1();
+	result[0]();
+
+	//加上立即执行
+	function fn1(){
+		var arr1 = [];
+		for(var i = 0;i < 10;i++)
+		{
+			(function(j){//这是个函数里的J相互独立不影响
+				arr1[j] = function(){//独立作用域
+					return j;
+				}
+			})(i)//传入i
+		}
+		return arr1;
+	}
+	var result = fn1();
+	result[0]();
+	//1、函数的作用域，在定义的时候就是确定的
+	//2、函数内部的变量，有些时候需要等到函数执行的时候来确定
+	
+	for(var i = 0;i<3;i++){
+		(function(j){
+			setTimeout(function(){
+				console.log(new Date(),j)
+			},1000*j)
+		})(i)
+	}
+
+	//闭包
+	function fn1(){
+		var x = 1;
+		function fn2(){
+			console.log(++x);
+		}
+		return fn2;
+	}
+	var result = fn1;
+	console.log(result);
+	result();
+	//闭包：通过在函数fn1内部定义函数fn2,来访问在父函数fn1当中的局部变量
+	function addNumber(start){
+		return function(step){
+			start += step;
+			return start;
+		}
+	}
+	var result = addNumber(10);
+	console.log(result(1));
+	console.log(result(1));
+	//形成闭包的条件：外层定义的函数（aaddnumber）、内层定义的函数（）
+	//内层函数与外层函数作用域内相关联的变量没有释放掉一直保存在内存当中
+	//
+	//闭包作用：
+	//1.可以访问到函数（addnumber）内部定义的局部变量（start）
+	//2.可以让相关联的变量保持在内存当中不释放
+	
+	function foo(){
+		var i = 0;
+		function bar(){
+			console.log(++i);
+		}
+		return bar;
+	}
+	var a = foo();
+	var b = foo();
+	a();
+	a();
+	b();	
+</script>
+</html>

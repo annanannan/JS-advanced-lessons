@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        new Date(年份，月份，日，时，分，秒，毫秒)
+    */
+    var date1 = new Date("2019","05","05");
+    console.log(date1);
+
+    var date2 = new Date("2019-05-05");
+    console.log(date2);
+
+    var millionSeconds = Dtae.now();
+    var date3 = new Date(millionSeconds);
+    console.log(date3);
+    //空着就为当前的时间
+
+    /*
+        时间分类：当地时间 世界标准时间UTC CMT
+    */
+    var millionSeconds = date.parse("2019-05-05");
+    console.log(millionSeconds);
+    //时间戳
+    var next = millionSeconds + 86400000;
+    console.log(); 
+    //获取的都是本地时间
+
+    //weeks取值范围从0到6
+    var weeks = ["星期天","星期一"];
+    var currentDay = (new Date()).getDay();
+    console.log(weeks[currentDay]);
+    //从零开始月份会小1
+    
+</script>
+</html>
